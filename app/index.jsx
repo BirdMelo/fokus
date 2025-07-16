@@ -1,5 +1,9 @@
 import { useState } from "react";
-import {Image, StyleSheet, Text, View, Pressable } from "react-native";
+import { Image, StyleSheet, Text, View } from "react-native";
+import { FokusButton } from "../components/FokusButton"
+import { colors } from "../components/Colors"
+import { ActionButton } from "../components/ActionButton"
+import { Timer } from "../components/Timer"
 
 export default function Index() {
   
@@ -12,19 +16,16 @@ export default function Index() {
       <View style={styles.actions}>
         <View style={styles.timer_context}>
           {pomodoro.map(p => (
-            <Pressable 
+            <ActionButton 
               key={p.id} 
-              style={timerType.id === p.id ? styles.timer_context__text__Active : null}
-              onPress={()=> setTimerType(p)}
-            >
-              <Text style={styles.timer_context__text}>
-                {p.display}
-              </Text>
-            </Pressable>
+              active={timerType.id === p.id} 
+              onPress={()=> setTimerType(p)} 
+              display={p.display}
+            />
           ))}
         </View>
-          <Text style={styles.timer}>{ new Date(timerType.initialValue * 1000).toLocaleTimeString('pt-BR', {minute: '2-digit', second: '2-digit'}) }</Text>
-          <Pressable style={styles.button}><Image source={require('../assets/images/projectImg/play_arrow.png')}/><Text style={styles.buttonText}>Começar</Text></Pressable>
+          <Timer time={timerType.initialValue}/>
+          <FokusButton/>
       </View>
       <View style={styles.footer}>
         <Text style={styles.footerText}>Projeto fictício e sem fins comerciais.</Text>
@@ -32,6 +33,9 @@ export default function Index() {
       </View>
     </View>
   );
+}
+function minute(number) {
+  return number*60;
 }
 const pomodoro = [
   {
@@ -53,14 +57,6 @@ const pomodoro = [
     display: 'Pausa longa'
   }
 ]
-const colors = {
-  bgColor: '#021123',
-  stopwatch_bg: '#14448080',
-  chips: '#144480',
-  buttons_bg: '#B872FF',
-  tasks: '#98A0A8',
-  text: '#FFF'
-}
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -81,36 +77,6 @@ const styles = StyleSheet.create({
   timer_context:{
     flexDirection: 'row',
     justifyContent: 'space-around'
-  },
-  timer_context__text:{
-    color: colors.text,
-    padding: 8,
-    fontSize: 12
-  },
-  timer_context__text__Active:{
-    fontWeight: 'bold',
-    backgroundColor: colors.chips,
-    borderRadius: 8
-  },
-  timer: {
-    color: colors.text,
-    fontSize: 53.7,
-    fontWeight: 'bold',
-    textAlign: 'center'
-  },
-  button: {
-    backgroundColor: colors.buttons_bg,
-    padding: 8,
-    borderRadius: 32,
-    flexDirection: "row",
-    justifyContent: 'center',
-    alignItems: 'center',
-    gap: 13.5
-  },
-  buttonText: {
-    fontWeight: 'bold',
-    color: colors.bgColor,
-    fontSize: 18
   },
   footer: {
     width: '80%'
