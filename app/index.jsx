@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
 import { FokusButton } from "../components/FokusButton"
 import { colors } from "../components/Colors"
@@ -7,7 +7,41 @@ import { Timer } from "../components/Timer"
 
 export default function Index() {
   
-    const [timerType, setTimerType] = useState(pomodoro[0])
+  const [timerType, setTimerType] = useState(pomodoro[0])
+  const [timerRunning, setTimerRunning] = useState(false)
+  const [seconds, setSeconds] = useState(pomodoro[0].initialValue)
+
+  const timerRef = useRef(null)
+
+  function clear() {
+    if(timerRef.current != null) {
+      clearInterval(timerRef.current)
+      timerRef.current = null
+      setTimerRunning(false)
+    }
+  }
+  function toggleTimerType(newTimerType) {
+    setTimerType(newTimerType)
+    setSeconds(newTimerType.initialValue)
+    clear()
+  }
+  function toggleTimer() {
+    if(timerRef.current) {
+      clear()
+      return
+    }
+    setTimerRunning(true)
+    const id = setInterval(() => {
+      setSeconds(currentTime => {
+        if(currentTime === 0) {
+          clear()
+          return timerType.initialValue
+        }
+        return currentTime -1
+      })
+    }, 1000)
+    timerRef.current = id
+  }
   return (
     <View
       style={styles.container}
@@ -19,13 +53,13 @@ export default function Index() {
             <ActionButton 
               key={p.id} 
               active={timerType.id === p.id} 
-              onPress={()=> setTimerType(p)} 
+              onPress={()=> {toggleTimerType(p)}}
               display={p.display}
             />
           ))}
         </View>
-          <Timer time={timerType.initialValue}/>
-          <FokusButton/>
+          <Timer time={seconds}/>
+          <FokusButton title={timerRunning ? 'Pausar' : 'Começar'} onPress={toggleTimer}/>
       </View>
       <View style={styles.footer}>
         <Text style={styles.footerText}>Projeto fictício e sem fins comerciais.</Text>
@@ -35,24 +69,24 @@ export default function Index() {
   );
 }
 function minute(number) {
-  return number*60;
+  return number * 60
 }
 const pomodoro = [
   {
     id:'focus',
-    initialValue: 25,
+    initialValue: minute(25),
     image: require('../assets/images/projectImg/foco_img.png'),
     display: 'Foco'
   },
   {
     id:'short',
-    initialValue: 5,
+    initialValue: minute(5),
     image: require('../assets/images/projectImg/pausaCurta_img.png'),
     display: 'Pausa curta'
   },
   {
     id:'long',
-    initialValue: 15,
+    initialValue: minute(15),
     image: require('../assets/images/projectImg/pausaLonga_img.png'),
     display: 'Pausa longa'
   }

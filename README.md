@@ -13,3 +13,5 @@ Normalmente consiste em um estudo de 25min e uma pausa de 5min, mas pode ocorrer
 * **Primeira aula:** O que é, como instalar e utilizar o React Native;
 * **Segunda aula:** Aprendendo a utilizar classes como: Image, View, Text, StyleSheet. Estilizamos a aplicação utilizando StyleSheet;
 * **Terceira aula:** Utilizando JSX para modificar a aparência e funcionalidades do aplicativo, implementando a navbar para trocar entre foco, pausa curta e pausa longa;
+* **Quarta aula:** Modularizando aplicação em componentes. Foi criado uma pasta chamada "components" que serve para guarda todos os componentes do código evitando de ficar no código principal;
+* **Quinta aula** Foi criado funções para o timer funcionar corretamente e ensinado como funciona o svg no React Native.
