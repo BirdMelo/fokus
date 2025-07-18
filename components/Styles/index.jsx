@@ -29,5 +29,18 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
     color: colors.tasks,
     fontSize: 12.5
+  },
+  title: {
+    color: colors.text,
+    fontSize: 37,
+    textAlign: 'center'
+  },
+  bold: {
+    fontWeight: 'bold'
+  },
+  text: {
+    color: colors.text,
+    fontSize: 18,
+    textAlign: 'center'
   }
 })

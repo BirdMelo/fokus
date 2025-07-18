@@ -14,5 +14,6 @@ Normalmente consiste em um estudo de 25min e uma pausa de 5min, mas pode ocorrer
 * **2° aula:** Aprendendo a utilizar classes como: Image, View, Text, StyleSheet. Estilizamos a aplicação utilizando StyleSheet;
 * **3° aula:** Utilizando JSX para modificar a aparência e funcionalidades do aplicativo, implementando a navbar para trocar entre foco, pausa curta e pausa longa;
 * **4° aula:** Modularizando aplicação em componentes. Foi criado uma pasta chamada "components" que serve para guarda todos os componentes do código evitando de ficar no código principal;
-* **5° aula** Foi criado funções para o timer funcionar corretamente e ensinado como funciona o svg no React Native.
-* **6° aula** Foi feito a página inicial do projeto, foi apresentado a classe Link e estilizamos a página principal. nessa parte ainda não possui conexão com as duas abas.
+* **5° aula:** Foi criado funções para o timer funcionar corretamente e ensinado como funciona o svg no React Native.
+* **6° aula:** Foi feito a página inicial do projeto, foi apresentado a classe Link e estilizamos a página principal. nessa parte ainda não possui conexão com as duas abas.
+* **7° aula:** Alterando modo de alternação de páginas para "Drawer", nesse projeto se mostrou melhor que "Stake". Acrecentando outras páginas requiridas.

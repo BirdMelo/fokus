@@ -4,6 +4,7 @@ import { FokusButton } from "../components/FokusButton"
 import { ActionButton } from "../components/ActionButton"
 import { Timer } from "../components/Timer"
 import {styles} from "../components/Styles"
+import {IconPlay, IconPause} from '../components/Icons'
 
 export default function Pomodoro() {
   
@@ -59,7 +60,7 @@ export default function Pomodoro() {
           ))}
         </View>
           <Timer time={seconds}/>
-          <FokusButton title={timerRunning ? 'Pausar' : 'Começar'} onPress={toggleTimer}/>
+          <FokusButton title={timerRunning ? 'Pausar' : 'Começar'} icon={timerRunning ? <IconPause/> : <IconPlay/>} onPress={toggleTimer}/>
       </View>
       <View style={styles.footer}>
         <Text style={styles.footerText}>Projeto fictício e sem fins comerciais.</Text>
