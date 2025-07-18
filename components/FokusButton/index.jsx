@@ -1,9 +1,8 @@
-import { Pressable, StyleSheet, Animated } from 'react-native'
+import { Pressable, StyleSheet, Animated, Dimensions } from 'react-native'
 import {colors} from '../Colors'
 import React, {useRef} from 'react';
-import {IconPlay, IconPause} from '../Icons'
 
-export const FokusButton = ( { onPress, title }) => {
+export const FokusButton = ( { onPress, title, icon }) => {
   const fadeAnim = useRef(new Animated.Value(1)).current
 
   React.useEffect(() => {
@@ -13,21 +12,25 @@ export const FokusButton = ( { onPress, title }) => {
       duration: 300, // Duração da animação (em ms)
     }).start();
   }, [title]);
-
-  const image = title === 'Começar'? <IconPlay/> : <IconPause/>
+  let hasIcon
+  if(icon) {
+    hasIcon = (
+      <Animated.View style={{opacity: fadeAnim}}> {icon} </Animated.View>
+    )
+  }
   return (
       <Pressable style={styles.button} onPress={onPress}>
-        <Animated.View style={{opacity: fadeAnim}}>
-          {image}
-        </Animated.View>
+        {hasIcon}
         <Animated.Text style={[styles.buttonText, {opacity: fadeAnim}]}>{title}</Animated.Text>
       </Pressable>
   )
 }
+const {width} = Dimensions.get('window')
 const styles = StyleSheet.create({
   button: {
     backgroundColor: colors.buttons_bg,
-    padding: 8,
+    paddingHorizontal: width * 0.20,
+    paddingVertical: 8,
     borderRadius: 32,
     flexDirection: "row",
     justifyContent: 'center',

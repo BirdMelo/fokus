@@ -1,123 +1,66 @@
-import { useState, useRef } from "react";
+import { Link } from "expo-router";
 import { Image, StyleSheet, Text, View } from "react-native";
-import { FokusButton } from "../components/FokusButton"
-import { colors } from "../components/Colors"
-import { ActionButton } from "../components/ActionButton"
-import { Timer } from "../components/Timer"
+import {styles} from "../components/Styles"
+import {colors} from "../components/Colors"
+import {FokusButton} from "../components/FokusButton"
 
 export default function Index() {
-  
-  const [timerType, setTimerType] = useState(pomodoro[0])
-  const [timerRunning, setTimerRunning] = useState(false)
-  const [seconds, setSeconds] = useState(pomodoro[0].initialValue)
-
-  const timerRef = useRef(null)
-
-  function clear() {
-    if(timerRef.current != null) {
-      clearInterval(timerRef.current)
-      timerRef.current = null
-      setTimerRunning(false)
-    }
-  }
-  function toggleTimerType(newTimerType) {
-    setTimerType(newTimerType)
-    setSeconds(newTimerType.initialValue)
-    clear()
-  }
-  function toggleTimer() {
-    if(timerRef.current) {
-      clear()
-      return
-    }
-    setTimerRunning(true)
-    const id = setInterval(() => {
-      setSeconds(currentTime => {
-        if(currentTime === 0) {
-          clear()
-          return timerType.initialValue
-        }
-        return currentTime -1
-      })
-    }, 1000)
-    timerRef.current = id
-  }
   return (
-    <View
-      style={styles.container}
-    >
-      <Image source = {timerType.image}/>
-      <View style={styles.actions}>
-        <View style={styles.timer_context}>
-          {pomodoro.map(p => (
-            <ActionButton 
-              key={p.id} 
-              active={timerType.id === p.id} 
-              onPress={()=> {toggleTimerType(p)}}
-              display={p.display}
-            />
-          ))}
-        </View>
-          <Timer time={seconds}/>
-          <FokusButton title={timerRunning ? 'Pausar' : 'Começar'} onPress={toggleTimer}/>
+    <View style={styles.container}>
+      <Image
+        style={indexStyle.iconFokus}
+        source={require('../assets/images/projectImg/fokusIcon.png')}
+      />
+      <View>
+        <Text style={indexStyle.text}>Otimize sua produtividade,</Text>
+        <Text style={[indexStyle.text, indexStyle.text_bold]}>mergulhe no que importa</Text>
       </View>
+      <Image
+        style={indexStyle.image}
+        source={require('../assets/images/projectImg/Imagem tela inicial.png')}
+      />
+      {/* <FokusButton title={"Quero iniciar!"} onPress={() => console.log("navegar")}/> */}
+      <Link style={indexStyle.button} href={{pathname: '/pomodoro'}}>
+        <Text style={indexStyle.button__text}>Quero iniciar!</Text>
+      </Link>
       <View style={styles.footer}>
         <Text style={styles.footerText}>Projeto fictício e sem fins comerciais.</Text>
         <Text style={styles.footerText}> Desenvolvido por Alura.</Text>
       </View>
     </View>
-  );
+  )
 }
-function minute(number) {
-  return number * 60
-}
-const pomodoro = [
-  {
-    id:'focus',
-    initialValue: minute(25),
-    image: require('../assets/images/projectImg/foco_img.png'),
-    display: 'Foco'
+const indexStyle = StyleSheet.create({
+  iconFokus: {
+    width: 156.36,
+    height: 40
   },
-  {
-    id:'short',
-    initialValue: minute(5),
-    image: require('../assets/images/projectImg/pausaCurta_img.png'),
-    display: 'Pausa curta'
+  text: {
+    color: colors.text,
+    fontSize: 37,
+    textAlign: 'center'
   },
-  {
-    id:'long',
-    initialValue: minute(15),
-    image: require('../assets/images/projectImg/pausaLonga_img.png'),
-    display: 'Pausa longa'
-  }
-]
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: colors.bgColor,
-    gap: 40
+  text_bold: {
+    fontWeight: 'bold'
   },
-  actions: {
-    padding: 24,
-    backgroundColor: colors.stopwatch_bg,
-    width: '80%',
+  image: {
+    width:317.67,
+    height: 266.46
+  },
+  button: {
+    backgroundColor: colors.buttons_bg,
     borderRadius: 32,
-    borderWidth: 2,
-    borderColor: colors.chips,
-    gap: 32
+    flexDirection: "row",
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: 13.5,
+    paddingHorizontal: 69.5,
+    paddingVertical: 6.5
   },
-  timer_context:{
-    flexDirection: 'row',
-    justifyContent: 'space-around'
-  },
-  footer: {
-    width: '80%'
-  },
-  footerText: {
-    textAlign: 'center',
-    color: colors.tasks,
-    fontSize: 12.5
+  button__text: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: colors.bgColor
+
   }
 })

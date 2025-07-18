@@ -4,5 +4,5 @@ export const colors = {
   chips: '#144480',
   buttons_bg: '#B872FF',
   tasks: '#98A0A8',
-  text: '#FFF'
+  text: 'white'
 }
