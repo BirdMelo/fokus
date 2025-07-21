@@ -18,3 +18,4 @@ Normalmente consiste em um estudo de 25min e uma pausa de 5min, mas pode ocorrer
 * **6° aula:** Foi feito a página inicial do projeto, foi apresentado a classe Link e estilizamos a página principal. nessa parte ainda não possui conexão com as duas abas.
 * **7° aula:** Alterando modo de alternação de páginas para "Drawer", nesse projeto se mostrou melhor que "Stake". Acrecentando outras páginas requiridas.
 * **8° aula:** Desenvolvemos a página de lista de tarefas. feito o design das tarefas e uma página para adicionar mais tarefas. ainda não foi implementado funcionalidades
+* **9° aula:** Definimos o footer como um componente, desenvolvemos a página de adicinar tarefa no aplicativo

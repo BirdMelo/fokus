@@ -5,6 +5,7 @@ import { ActionButton } from "../components/ActionButton"
 import { Timer } from "../components/Timer"
 import {styles} from "../components/Styles"
 import {IconPlay, IconPause} from '../components/Icons'
+import Footer from "../components/aluraFooter"
 
 export default function Pomodoro() {
   
@@ -62,10 +63,7 @@ export default function Pomodoro() {
           <Timer time={seconds}/>
           <FokusButton title={timerRunning ? 'Pausar' : 'Começar'} icon={timerRunning ? <IconPause/> : <IconPlay/>} onPress={toggleTimer}/>
       </View>
-      <View style={styles.footer}>
-        <Text style={styles.footerText}>Projeto fictício e sem fins comerciais.</Text>
-        <Text style={styles.footerText}> Desenvolvido por Alura.</Text>
-      </View>
+      <Footer/>
     </View>
   );
 }

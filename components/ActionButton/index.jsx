@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
   timer_context__text:{
     color: colors.text,
     padding: 8,
-    fontSize: 12,
+    fontSize: 12
   },
   timer_context__text__Active:{
     fontWeight: 'bold',

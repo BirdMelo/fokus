@@ -1,4 +1,4 @@
-import { Pressable, StyleSheet, Animated, Dimensions } from 'react-native'
+import { Pressable, StyleSheet, Animated } from 'react-native'
 import {colors} from '../Colors'
 import React, {useRef} from 'react';
 
@@ -32,11 +32,10 @@ export const FokusButton = ( { onPress, title, icon, outline }) => {
       </Pressable>
   )
 }
-const {width} = Dimensions.get('window')
 const styles = StyleSheet.create({
   button: {
     backgroundColor: colors.buttons_bg,
-    paddingHorizontal: width * 0.20,
+    paddingHorizontal: 30,
     paddingVertical: 8,
     borderRadius: 32,
     flexDirection: "row",

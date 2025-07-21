@@ -3,6 +3,7 @@ import { Image, StyleSheet, Text, View } from "react-native";
 import {styles} from "../components/Styles"
 import {colors} from "../components/Colors"
 import {FokusButton} from "../components/FokusButton"
+import Footer from "../components/aluraFooter"
 
 export default function Index() {
   return (
@@ -20,13 +21,7 @@ export default function Index() {
         source={require('../assets/images/projectImg/Imagem tela inicial.png')}
       />
       <FokusButton title={"Quero iniciar!"} onPress={() => router.navigate('/pomodoro')}/>
-      {/* <Link style={indexStyle.button} href={{pathname: '/pomodoro'}}>
-        <Text style={indexStyle.button__text}>Quero iniciar!</Text>
-      </Link> */}
-      <View style={styles.footer}>
-        <Text style={styles.footerText}>Projeto fictício e sem fins comerciais.</Text>
-        <Text style={styles.footerText}> Desenvolvido por Alura.</Text>
-      </View>
+      <Footer/>
     </View>
   )
 }

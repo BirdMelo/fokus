@@ -1,9 +1,10 @@
-import { Text, SafeAreaView, StyleSheet, ScrollView } from "react-native";
-import {styles} from "../../components/Styles"
-import { TaskItem } from "../TaskItem"
-import {FokusButton} from "../../components/FokusButton"
-import { IconPlus } from "../../components/Icons";
 import { router } from "expo-router";
+import { SafeAreaView, ScrollView, StyleSheet, Text } from "react-native";
+import Footer from "../../components/aluraFooter";
+import { FokusButton } from "../../components/FokusButton";
+import { IconPlus } from "../../components/Icons";
+import { styles } from "../../components/Styles";
+import { TaskItem } from "../../components/TaskItem";
 export default function Tasks () {
     return (
         <SafeAreaView style={[styles.container, taksList.container]}>
@@ -23,13 +24,14 @@ export default function Tasks () {
                 icon={<IconPlus/>}
                 onPress={()=> {router.navigate('/add_task')}}
             />
+            <Footer/>
         </SafeAreaView>
     )
 }
 const taksList = StyleSheet.create({
     container: {
         justifyContent: 'space-around',
-        alignItems: 'stretch',
+        alignItems: 'center',
         paddingBottom: '15%',
         paddingHorizontal: '5%'
     },
@@ -37,6 +39,6 @@ const taksList = StyleSheet.create({
         gap: 8
     },
     scrollArea: {
-        marginVertical: 8
+        width: '100%'
     }
 })

@@ -1,22 +1,21 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
-import {IconCheck, IconPencil, IconTrash} from "../../components/Icons"
-import {colors} from '../../components/Colors'
+import { colors } from '../Colors';
+import { IconCheck, IconPencil, IconTrash } from "../Icons";
 
 export const TaskItem =({ completed, text, onToggleComplete, onPressEdit, onPressRemove }) => {
-    const cardStyles__list = [cardStyles.container]
+    const cardStyles__list = [tasksStyles.container]
     if(completed){
-        cardStyles__list.push(cardStyles.cardCompleted)
+        cardStyles__list.push(tasksStyles.cardCompleted)
     }
     return (
         <View style={cardStyles__list}>
-            <View style={ cardStyles.viewBlock}>
+            <View style={ tasksStyles.viewBlock}>
                 <Pressable onPress={onToggleComplete}>
                     <IconCheck checked = { completed }/>
                 </Pressable>
-            
-                <Text style={cardStyles.text}> {text} </Text>
+                <Text style={tasksStyles.text}> {text} </Text>
             </View>
-            <View style={ cardStyles.viewBlock}>
+            <View style={ tasksStyles.viewBlock}>
                 <Pressable onPress={onPressEdit}>
                     <IconPencil/>
                 </Pressable>
@@ -25,20 +24,18 @@ export const TaskItem =({ completed, text, onToggleComplete, onPressEdit, onPres
                     <IconTrash/>
                 </Pressable>
             </View>
-            
-                
-            
         </View>
     )
 }
-const cardStyles = StyleSheet.create({
+const tasksStyles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         backgroundColor: colors.tasks,
         justifyContent: 'space-between',
         paddingHorizontal: 8,
         paddingVertical: 20,
-        borderRadius: 8
+        borderRadius: 8,
+        width: '100%'
     },
     viewBlock: {
         flexDirection: 'row',
