@@ -2,7 +2,7 @@ import { Pressable, StyleSheet, Animated, Dimensions } from 'react-native'
 import {colors} from '../Colors'
 import React, {useRef} from 'react';
 
-export const FokusButton = ( { onPress, title, icon }) => {
+export const FokusButton = ( { onPress, title, icon, outline }) => {
   const fadeAnim = useRef(new Animated.Value(1)).current
 
   React.useEffect(() => {
@@ -19,9 +19,16 @@ export const FokusButton = ( { onPress, title, icon }) => {
     )
   }
   return (
-      <Pressable style={styles.button} onPress={onPress}>
+      <Pressable 
+        style={[styles.button, outline && styles.outlineButton]} 
+        onPress={onPress}
+      >
         {hasIcon}
-        <Animated.Text style={[styles.buttonText, {opacity: fadeAnim}]}>{title}</Animated.Text>
+        <Animated.Text 
+        style={[styles.buttonText, outline && styles.outlineButtonText, {opacity: fadeAnim}]}
+        >
+          {title}
+        </Animated.Text>
       </Pressable>
   )
 }
@@ -37,9 +44,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 13.5
   },
+  outlineButton: {
+    backgroundColor: 'transparent',
+    borderColor: colors.buttons_bg,
+    borderWidth: 2
+  },
   buttonText: {
     fontWeight: 'bold',
     color: colors.bgColor,
     fontSize: 18
+  },
+  outlineButtonText:{
+    color: colors.buttons_bg
   }
 })
