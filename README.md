@@ -19,3 +19,5 @@ Normalmente consiste em um estudo de 25min e uma pausa de 5min, mas pode ocorrer
 * **7° aula:** Alterando modo de alternação de páginas para "Drawer", nesse projeto se mostrou melhor que "Stake". Acrecentando outras páginas requiridas.
 * **8° aula:** Desenvolvemos a página de lista de tarefas. feito o design das tarefas e uma página para adicionar mais tarefas. ainda não foi implementado funcionalidades
 * **9° aula:** Definimos o footer como um componente, desenvolvemos a página de adicinar tarefa no aplicativo
+* **10° aula:** Criação do Provider das Tasks, criação do CRUD para as tasks e fazendo a lista de tasks ser uma scroll.
+* **11° aula:** aplicando os métodos do CRUD para os botões das Tasks e armazenando as informações das tasks no Storage. No final um desafio de finalizar o projeto

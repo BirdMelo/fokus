@@ -3,25 +3,41 @@ import { styles } from "../../components/Styles"
 import Footer from "../../components/aluraFooter"
 import { colors } from "../../components/Colors"
 import { IconSave } from "../../components/Icons"
+import useTaskContext from "../../components/context/useTaskContext"
+import { useState } from "react"
+import { router } from "expo-router"
 export default function AddTask() {
+    const [description, setDescription] = useState()
+    const {addTask} = useTaskContext()
+    const submitTask = () => {
+        if(!description) {
+            return
+        }
+        addTask(description)
+        setDescription('')
+        router.navigate('/tasks')
+    }
+
     return (
-        <SafeAreaView style={[styles.container, addTask.mainContainer]}>
+        <SafeAreaView style={[styles.container, addTask__style.mainContainer]}>
             <Text style={styles.title}>
                 Adicionar uma tarefa:
             </Text>
-            <View style={addTask.inputContainer}>
-                <Text style= {addTask.taskTitle}>
+            <View style={addTask__style.inputContainer}>
+                <Text style= {addTask__style.taskTitle}>
                     Em qual atividade está trabalhando?
                 </Text>
                 <TextInput 
-                    style={addTask.textInput}
+                    style={addTask__style.textInput}
                     numberOfLines={10}
                     multiline={true}
+                    value={description}
+                    onChangeText={setDescription}
                 />
-                <View style={addTask.buttonsContainer}>
-                    <Pressable style={addTask.salveButton}>
+                <View style={addTask__style.buttonsContainer}>
+                    <Pressable style={addTask__style.salveButton} onPress={submitTask}>
                         <IconSave/>
-                        <Text style={addTask.buttonText}>Salvar</Text>
+                        <Text style={addTask__style.buttonText}>Salvar</Text>
                     </Pressable>
                 </View>
             </View>
@@ -30,7 +46,7 @@ export default function AddTask() {
     )
 }
 
-const addTask = StyleSheet.create({
+const addTask__style = StyleSheet.create({
     mainContainer: {
         justifyContent: 'flex-start'
     },

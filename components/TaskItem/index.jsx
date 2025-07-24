@@ -10,17 +10,17 @@ export const TaskItem =({ completed, text, onToggleComplete, onPressEdit, onPres
     return (
         <View style={cardStyles__list}>
             <View style={ tasksStyles.viewBlock}>
-                <Pressable onPress={onToggleComplete}>
+                <Pressable style={ tasksStyles.taskButton} onPress={onToggleComplete}>
                     <IconCheck checked = { completed }/>
                 </Pressable>
-                <Text style={tasksStyles.text}> {text} </Text>
+                <Text style={tasksStyles.text}>{text}</Text>
             </View>
             <View style={ tasksStyles.viewBlock}>
-                <Pressable onPress={onPressEdit}>
+                <Pressable style={ tasksStyles.taskButton} onPress={onPressEdit}>
                     <IconPencil/>
                 </Pressable>
                     
-                <Pressable onPress={onPressRemove}>
+                <Pressable style={ tasksStyles.taskButton} onPress={onPressRemove}>
                     <IconTrash/>
                 </Pressable>
             </View>
@@ -48,5 +48,10 @@ const tasksStyles = StyleSheet.create({
     },
     cardCompleted: {
         backgroundColor: colors.completed
+    },
+    taskButton: {
+        // borderColor: 'red',
+        // borderWidth: 1,
+        padding: 7
     }
 })

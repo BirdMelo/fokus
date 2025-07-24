@@ -1,23 +1,35 @@
 import { router } from "expo-router";
-import { SafeAreaView, ScrollView, StyleSheet, Text } from "react-native";
+import { FlatList, SafeAreaView, ScrollView, StyleSheet, Text, View } from "react-native";
 import Footer from "../../components/aluraFooter";
 import { FokusButton } from "../../components/FokusButton";
 import { IconPlus } from "../../components/Icons";
 import { styles } from "../../components/Styles";
 import { TaskItem } from "../../components/TaskItem";
+import useTaskContext from "../../components/context/useTaskContext";
+
 export default function Tasks () {
+
+    const { tasks, deleteTask, toggleTaskCompleted  } = useTaskContext()
+
     return (
         <SafeAreaView style={[styles.container, taksList.container]}>
             <Text style={styles.title}>
                 Lista de Tarefas:
             </Text>
-            <ScrollView
-                contentContainerStyle={taksList.viewList}
-                style={taksList.scrollArea}
-            >
-                <TaskItem completed text="Estudar React"/>
-                <TaskItem text = "Estudar React-Native"/>
-            </ScrollView>
+            <FlatList
+                data={tasks}
+                renderItem={({item}) =>
+                    <TaskItem 
+                        completed={item.completed} 
+                        text={item.description}
+                        onPressRemove={() => deleteTask(item.id)}
+                        onToggleComplete={() => toggleTaskCompleted(item.id)}
+                        onPressEdit={() => router.navigate(`/edit_task/${item.id}`)}
+                    />
+                }
+                keyExtractor={item => item.id}
+                ItemSeparatorComponent={() => <View style={{height:8}} ></View>}
+            />
             <FokusButton 
                 title="Adicionar nova tarefa" 
                 outline 
@@ -34,11 +46,5 @@ const taksList = StyleSheet.create({
         alignItems: 'center',
         paddingBottom: '15%',
         paddingHorizontal: '5%'
-    },
-    viewList: {
-        gap: 8
-    },
-    scrollArea: {
-        width: '100%'
     }
 })

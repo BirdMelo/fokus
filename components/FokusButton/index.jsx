@@ -15,17 +15,17 @@ export const FokusButton = ( { onPress, title, icon, outline }) => {
   let hasIcon
   if(icon) {
     hasIcon = (
-      <Animated.View style={{opacity: fadeAnim}}> {icon} </Animated.View>
+      <Animated.View style={{opacity: fadeAnim}}>{icon}</Animated.View>
     )
   }
   return (
       <Pressable 
-        style={[styles.button, outline && styles.outlineButton]} 
+        style={[styles.button, outline? styles.outlineButton: null]} 
         onPress={onPress}
       >
         {hasIcon}
         <Animated.Text 
-        style={[styles.buttonText, outline && styles.outlineButtonText, {opacity: fadeAnim}]}
+        style={[styles.buttonText, outline? styles.outlineButtonText: null, {opacity: fadeAnim}]}
         >
           {title}
         </Animated.Text>
