@@ -6,6 +6,7 @@ import { IconPlus } from "../../components/Icons";
 import { styles } from "../../components/Styles";
 import { TaskItem } from "../../components/TaskItem";
 import useTaskContext from "../../components/context/useTaskContext";
+import { colors } from "../../components/Colors";
 
 export default function Tasks () {
 
@@ -16,6 +17,9 @@ export default function Tasks () {
             <Text style={styles.title}>
                 Lista de Tarefas:
             </Text>
+            {tasks.length === 0 && (
+                <Text style={taksList.notEmptyScroll}>Ainda não há tarefas na sua lista, que tal adicionar?</Text>
+            )}
             <FlatList
                 data={tasks}
                 renderItem={({item}) =>
@@ -46,5 +50,11 @@ const taksList = StyleSheet.create({
         alignItems: 'center',
         paddingBottom: '15%',
         paddingHorizontal: '5%'
+    },
+    notEmptyScroll: {
+        fontSize: 22,
+        color: colors.tasks,
+        textAlign: 'center',
+        fontWeight: 'bold'
     }
 })

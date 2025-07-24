@@ -62,13 +62,24 @@ export function TasksProvider ({children}) {
             return oldState.filter(t => t.id !== id)
         })
     }
+    const alterTask = (id, description) => {
+        setTask(oldState => {
+            return oldState.map(t => {
+                if(t.id === Number(id)) {
+                    return {...t, description}
+                }
+                return t
+            })
+        })
+    }
     return (
         <TaskContext.Provider
             value={{
                 tasks,
                 addTask,
                 toggleTaskCompleted,
-                deleteTask
+                deleteTask,
+                alterTask
             }}
         >
             { children }

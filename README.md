@@ -21,3 +21,4 @@ Normalmente consiste em um estudo de 25min e uma pausa de 5min, mas pode ocorrer
 * **9° aula:** Definimos o footer como um componente, desenvolvemos a página de adicinar tarefa no aplicativo
 * **10° aula:** Criação do Provider das Tasks, criação do CRUD para as tasks e fazendo a lista de tasks ser uma scroll.
 * **11° aula:** aplicando os métodos do CRUD para os botões das Tasks e armazenando as informações das tasks no Storage. No final um desafio de finalizar o projeto
+* **Desafio final:** O único acesso ao edit_task é pelo icone de editar tarefa, realocado os styles de tasks para Styles, a edição da descrição da task está funcional e quando a lista de tarefas está vazia, aparecerá um aviso para dizer que está vazia.

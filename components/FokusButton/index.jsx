@@ -10,6 +10,7 @@ export const FokusButton = ( { onPress, title, icon, outline }) => {
     Animated.timing(fadeAnim, {
       toValue: 1, // Volta a ficar visível
       duration: 300, // Duração da animação (em ms)
+      useNativeDriver: true
     }).start();
   }, [title]);
   let hasIcon
