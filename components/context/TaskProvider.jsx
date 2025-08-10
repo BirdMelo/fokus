@@ -57,6 +57,16 @@ export function TasksProvider ({children}) {
             })
         })
     }
+    const updateTask = (id, description) => {
+        setTask(oldState => {
+            return oldState.map(t => {
+                if(t.id === id) {
+                    t.description = description
+                }
+                return t
+            })
+        })
+    }
     const deleteTask = (id) => {
         setTask(oldState => {
             return oldState.filter(t => t.id !== id)
@@ -79,7 +89,8 @@ export function TasksProvider ({children}) {
                 addTask,
                 toggleTaskCompleted,
                 deleteTask,
-                alterTask
+                alterTask,
+                updateTask
             }}
         >
             { children }

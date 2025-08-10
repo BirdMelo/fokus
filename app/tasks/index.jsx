@@ -17,9 +17,6 @@ export default function Tasks () {
             <Text style={styles.title}>
                 Lista de Tarefas:
             </Text>
-            {tasks.length === 0 && (
-                <Text style={taksList.notEmptyScroll}>Ainda não há tarefas na sua lista, que tal adicionar?</Text>
-            )}
             <FlatList
                 data={tasks}
                 renderItem={({item}) =>
@@ -33,6 +30,9 @@ export default function Tasks () {
                 }
                 keyExtractor={item => item.id}
                 ItemSeparatorComponent={() => <View style={{height:8}} ></View>}
+                ListEmptyComponent={
+                    <Text style={taksList.notEmptyScroll}>Ainda não há tarefas na sua lista, que tal adicionar?</Text>
+                }
             />
             <FokusButton 
                 title="Adicionar nova tarefa" 
